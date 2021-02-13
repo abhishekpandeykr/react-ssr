@@ -18,7 +18,7 @@ function shouldCompress(req, res) {
 app.use(
   compression({
     level: 2, // set compression level from 1 to 9 (6 by default)
-    filter: shouldCompress // set predicate to determine whether to compress
+    filter: shouldCompress, // set predicate to determine whether to compress
   })
 );
 
@@ -43,7 +43,7 @@ app.get('*', (req, res) => {
     .map(({ route }) => {
       return route.loadData ? route.loadData(store, id) : null;
     })
-    .map(promise => {
+    .map((promise) => {
       if (promise) {
         return new Promise((resolve, reject) => {
           promise.then(resolve).catch(resolve);
